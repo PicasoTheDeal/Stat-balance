@@ -42,7 +42,7 @@ open_prs=($(gh pr list --state open --json number -q '.[].number'))
 if [ ${#open_prs[@]} -gt 0 ]; then
     for ((i=1; i<=REVIEW_COUNT; i++)); do
         random_pr=${open_prs[RANDOM % ${#open_prs[@]}]}
-        gh pr review "$random_pr" --approve --body "Automated LGTM review." || true
+        gh pr comment "$random_pr" --body "Automated review comment for graph balance." || true
         sleep 1
     done
 else
