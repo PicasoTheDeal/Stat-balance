@@ -1,9 +1,9 @@
 name: Bash Profile Balancer
 
-on:
+"on":
   schedule:
     - cron: '0 2 * * *'
-  workflow_dispatch:
+  workflow_dispatch: {}
 
 jobs:
   balance:
@@ -25,4 +25,4 @@ jobs:
       - name: Run Bash Balancer Script
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: bash balance.s
+        run: bash balance.sh
