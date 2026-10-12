@@ -7,17 +7,17 @@ rand_range() {
     echo $((RANDOM % (max - min + 1) + min))
 }
 
-ISSUES_COUNT=$(rand_range 2 5)
-PR_COUNT=$(rand_range 2 5)
-REVIEW_COUNT=$(rand_range 2 4)
+ISSUES_COUNT=$(rand_range 1 3)
+PR_COUNT=$(rand_range 2 4)
+REVIEW_COUNT=$(rand_range 1 3)
 
 gh pr list --state open --limit 300 --json number --jq '.[].number' | while read pr; do
-    gh pr close "$pr" --comment "Auto-closing to balance graph." || true
+    gh pr close "$pr" || true
     sleep 2
 done
 
 git fetch -p || true
-git branch -r | grep 'origin/auto-pr' | sed 's/origin\///' | while read branch; do
+git branch -r | grep 'origin/auto' | sed 's/origin\///' | while read branch; do
     git push origin --delete "$branch" || true
     sleep 2
 done
