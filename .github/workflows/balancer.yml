@@ -19,10 +19,12 @@ jobs:
 
       - name: Configure Git Identity
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          # We use the secondary account's identity for commits/PRs
+          git config --global user.name "PicasoTheDeal101"
+          git config --global user.email "PicasoTheDeal101@users.noreply.github.com"
 
       - name: Run Bash Balancer Script
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SECONDARY_PAT: ${{ secrets.SECONDARY_PAT }}
         run: bash balance.sh
