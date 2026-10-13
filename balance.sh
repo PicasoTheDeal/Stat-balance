@@ -7,6 +7,8 @@ rand_range() {
     echo $((RANDOM % (max - min + 1) + min))
 }
 
+echo "Token length is: ${#SECONDARY_PAT}"
+
 echo "Checking rate limit..."
 GH_TOKEN="$SECONDARY_PAT" gh api rate_limit
 
