@@ -14,19 +14,19 @@ echo "Target -> Issues: $ISSUES_COUNT, PRs: $PR_COUNT"
 
 gh pr list --state open --limit 300 --json number --jq '.[].number' | while read pr; do
     gh pr close "$pr" || true
-    sleep 2
+    sleep 3
 done
 
 git fetch -p || true
 git branch -r | grep 'origin/auto' | sed 's/origin\///' | while read branch; do
     git push origin --delete "$branch" || true
-    sleep 2
+    sleep 3
 done
 
 echo "Creating issues..."
 for ((i=1; i<=ISSUES_COUNT; i++)); do
     gh issue create --title "Automated Task #$RANDOM" --body "Routine profile balancing issue."
-    sleep 2
+    sleep 3
 done
 
 echo "Creating pull requests..."
