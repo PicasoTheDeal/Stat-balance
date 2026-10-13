@@ -7,8 +7,8 @@ rand_range() {
     echo $((RANDOM % (max - min + 1) + min))
 }
 
-ISSUES_COUNT=$(rand_range 1 3)
-PR_COUNT=$(rand_range 2 4)
+ISSUES_COUNT=$(rand_range 2 6)
+PR_COUNT=$(rand_range 4 8)
 
 echo "Target -> Issues: $ISSUES_COUNT, PRs: $PR_COUNT"
 
